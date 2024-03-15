@@ -17,6 +17,7 @@ public class Game {
 
     List<Player> players;
     public void roll(Player giocatore, int birilliCaduti){
+        checkUltimoFrame(giocatore, birilliCaduti);
         giocatore.score_game += birilliCaduti;
         giocatore.score_frame += birilliCaduti;
         checkBonusPointStrike(giocatore);
@@ -28,6 +29,18 @@ public class Game {
         this.scoreTotale += birilliCaduti;
         times += 1;
 
+    }
+
+    private void checkUltimoFrame(Player giocatore, int birilliCaduti) {
+        if (frame == 10){
+            checkStrike(giocatore, birilliCaduti);
+            checkSpare(giocatore);
+            if (giocatore.strike || giocatore.spare){
+                giocatore.score_game += birilliCaduti;
+            }
+
+
+        }
     }
 
     private void checkBonusPointStrike(Player giocatore) {

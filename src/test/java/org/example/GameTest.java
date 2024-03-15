@@ -63,11 +63,12 @@ class GameTest {
     }
 
     @Test
-    void decimoFrame_dopoStrike_BonusPalla() {
-        giocatore.setScore_game(10);
-        giocatore.setStrike(true);
+    void decimoFrame_primoTentativoStrike_BonusPalla() {
+        game.setFrame(10);
+        giocatore.setScore_game(0);
+        game.roll(giocatore, 10);
+        game.roll(giocatore, 4);
         game.roll(giocatore, 2);
-        game.roll(giocatore, 0);
-        assertThat(giocatore.score_game).isEqualTo(14);
+        assertThat(giocatore.score_game).isEqualTo(36);
     }
 }
